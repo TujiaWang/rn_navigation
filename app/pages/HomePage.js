@@ -4,6 +4,8 @@ import {
     Text,
     Button,
     Image,
+    TextInput,
+    TouchableHighlight,
     Dimensions,
     View
 } from 'react-native';
@@ -13,12 +15,23 @@ import Swiper from 'react-native-swiper';
 var { height, width } = Dimensions.get('window');
 
 export default class HomePage extends Component { 
+    constructor(props){
+      super(props);
+      this.state = {
+        text:'宝贝名称/关键词(如：连衣裙)'
+      }
+    }
     render() {
         return ( 
           <View style = {{ position: 'relative' }} >
-            <View style = { styles.search } >
-              <Text > 搜索 </Text> 
-            </View> 
+            <View style = { styles.search }>
+              <TouchableHighlight onPress = {() => this.props.navigation.navigate('Product') }>
+                <View style={styles.search_wrapp}>
+                  <Text style={{height: 30,lineHeight:30, width:width - 100,backgroundColor: 'rgba(255, 255, 255, .5)',marginRight:10,paddingLeft:20,borderRadius:15}}>宝贝名称/关键词(如：连衣裙)</Text>
+                  <Text style={{color:'#ffffff'}}>搜索</Text>
+                </View>
+              </TouchableHighlight>
+            </View>
             <View style = { styles.header } >
               <Swiper style={styles.wrapper} height={250} loop={true} autoplay={true} paginationStyle={{bottom: 5}} autoplayTimeout={5}>
                 <View style={styles.slide} title={<Text numberOfLines={1}>Aussie tourist dies at Bali hotel</Text>}>
@@ -41,23 +54,24 @@ export default class HomePage extends Component {
             <View style = { styles.products } >
               <Text > 产品 </Text> 
             </View> 
-            <Button title = "Go to Home"
-            onPress = {
-                () => this.props.navigation.navigate('Product') }
-            /> 
-            </View>
+          </View>
         )
     }
 }
 const styles = StyleSheet.create({
     search: {
-        width: width,
+        width: width - 20,
+        marginHorizontal: 10,
         position: 'absolute',
         left: 0,
         top: 20,
-        zIndex: 99,
-        height: 30,
-        backgroundColor: 'rgba(255, 255, 255, .5)'
+        zIndex: 99
+    },
+    search_wrapp:{
+        display:'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     header: {
         height: 250,
