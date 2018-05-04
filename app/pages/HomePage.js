@@ -15,12 +15,6 @@ import Swiper from 'react-native-swiper';
 var { height, width } = Dimensions.get('window');
 
 export default class HomePage extends Component { 
-    constructor(props){
-      super(props);
-      this.state = {
-        text:'宝贝名称/关键词(如：连衣裙)'
-      }
-    }
     render() {
         return ( 
           <View style = {{ position: 'relative' }} >
